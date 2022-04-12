@@ -1,0 +1,9 @@
+.main {
+  height: 300px;
+  border: black 1px solid;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
