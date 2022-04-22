@@ -2,9 +2,43 @@
   <ng-container *ngFor="let user of (users | async)">
     <ng-container *ngIf="user.id">
       <div class="element">{{user.id}}</div>
+      <div class="element">{{user.name}}</div>
+      <div class="element">{{user.surname}}</div>
+      <div class="element">{{user.email}}</div>
       <button (click)="getInfo(user.id)">Get info</button>
       <button (click)="delete(user.id)">Delete</button>
-      <button (click)="update(user.id)">Update</button>
     </ng-container>
   </ng-container>
 </div>
+
+
+<form [formGroup]="myForm">
+  <div>
+    <label>
+      Name:
+      <input [formControlName]="formControls.name" placeholder="Your name">
+    </label>
+    <div *ngIf="isControlValid(formControls.name)">
+      Please provide a name.
+    </div>
+  </div>
+  <div>
+    <label>
+      Surname:
+      <input [formControlName]="formControls.surname" placeholder="Your name">
+    </label>
+    <div *ngIf="isControlValid(formControls.surname)">
+      Please provide a name.
+    </div>
+  </div>
+  <div>
+    <label>
+      Email:
+      <input [formControlName]="formControls.email" placeholder="Your email">
+    </label>
+    <div *ngIf="isControlValid(formControls.email)">
+      Please provide a valid email address.
+    </div>
+  </div>
+  <button [disabled]="myForm.invalid" (click)="submitForm()">Send</button>
+</form>

@@ -11,6 +11,7 @@ import {ChildTwoComponent} from './main/child-two/child-two.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {ChildOneComponent} from "./main/child-one/child-one.component";
 import { SupportComponent } from './support/support.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SupportComponent } from './support/support.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     AngularFireStorageModule,
     BrowserModule
   ],
