@@ -19,7 +19,7 @@ export class UploadService {
     const uploadTask: AngularFireUploadTask = this.storage.upload(filePath, fileToUpload);
     return [
       uploadTask.percentageChanges().pipe(map((value: number | undefined) => value?.toString())),
-      this.getDownloadUrl$(uploadTask, filePath).pipe(startWith(null)),
+      this.getDownloadUrl$(uploadTask, filePath).pipe(),
     ];
   }
 
