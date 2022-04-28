@@ -26,10 +26,7 @@ export class CrudService {
 
   public handleData<T>(collectionName: string): Observable<T[]> {
     return this.angularFirestore
-      .collection(collectionName, (ref) => {
-        const query: firebase.firestore.Query = ref;
-        return query.where('name', '==', 'newBook')
-      })
+      .collection(collectionName)
       .snapshotChanges()
       .pipe(
         map((actions) =>

@@ -15,4 +15,4 @@ export type ID = {
   id: string;
 }
 
-export type UserStore = User & ID;
+export type UserStore = User & ID | null;

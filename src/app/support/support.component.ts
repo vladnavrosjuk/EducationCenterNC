@@ -8,6 +8,7 @@ import {User, UserStore} from "../services/types";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserControls} from "../models/controls.enum";
 import DocumentReference = firebase.firestore.DocumentReference;
+import {StoreService} from "../services/crud/store.service";
 
 @Component({
   selector: 'app-support',
@@ -27,12 +28,14 @@ export class SupportComponent implements OnInit {
   public formControls: typeof UserControls = UserControls;
 
   constructor(private authService: AuthService,
+              private storeService: StoreService,
               private crudService: CrudService) {
   }
 
   public ngOnInit() {
     this.crudService.handleData<UserStore>(Collections.USERS).subscribe((value: UserStore[]) => {
       this.data = value;
+      this.storeService.user = this.data[0];
     })
     this.myForm.valueChanges.subscribe(value => console.log(value));
     this.myForm.addControl(UserControls.name, new FormControl("", Validators.required));
@@ -79,7 +82,9 @@ export class SupportComponent implements OnInit {
   }
 
   public update(user: UserStore): void {
-    this.crudService.updateObject(Collections.USERS, user.id, user).subscribe();
+    if (user) {
+      this.crudService.updateObject(Collections.USERS, user?.id, user).subscribe();
+    }
   }
 
   public isControlValid(controlName: string): boolean {

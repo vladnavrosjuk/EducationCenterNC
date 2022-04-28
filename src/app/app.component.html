@@ -1,6 +1,9 @@
 <ng-container *ngIf="!user ; else userContent">
   <button #buttonElement (click)="login()">Login</button>
 </ng-container>
+{{(user$ | async)?.name}}
+
+<button (click)="checkData()">Click</button>
 
 
 <ng-template #userContent>

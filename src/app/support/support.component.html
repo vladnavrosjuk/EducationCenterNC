@@ -1,6 +1,6 @@
 <div class="table">
   <ng-container *ngFor="let user of (users | async)">
-    <ng-container *ngIf="user.id">
+    <ng-container *ngIf="user && user.id">
       <div class="element">{{user.id}}</div>
       <div class="element">{{user.name}}</div>
       <div class="element">{{user.surname}}</div>
